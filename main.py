@@ -38,20 +38,21 @@ def seconds_to_time(n):
 def get_info(info):
     parsed = interpret_info(info)
     status = parsed["status"]
-    artist = parsed["artist"]
-    title = parsed["title"]
-    duration = parsed["duration"]
-    progress = parsed["position"]
 
     emoji = get_emoji(status)
 
     msg = ""
-    if artist == "" and title == "":
+    if "artist" not in parsed and "title" not in parsed:
         msg = "{} {}".format(emoji, status.capitalize())
-    elif status != "stopped":
-        msg = "{} {} - {} | {} / {}".format(emoji, artist, title, seconds_to_time(progress), seconds_to_time(duration))
     else:
-        msg = "{} {} - {}".format(emoji, artist, title)
+        artist = parsed["artist"]
+        title = parsed["title"]
+        if status != "stopped":
+            duration = parsed["duration"]
+            progress = parsed["position"]
+            msg = "{} {} - {} | {} / {}".format(emoji, artist, title, seconds_to_time(progress), seconds_to_time(duration))
+        else:
+            msg = "{} {} - {}".format(emoji, artist, title)
 
     return {
         "status": status,
