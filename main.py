@@ -47,12 +47,12 @@ def get_info(info):
     else:
         artist = parsed["artist"]
         title = parsed["title"]
-        if status != "stopped":
-            duration = parsed["duration"]
-            progress = parsed["position"]
-            msg = "{} {} - {} | {} / {}".format(emoji, artist, title, seconds_to_time(progress), seconds_to_time(duration))
-        else:
-            msg = "{} {} - {}".format(emoji, artist, title)
+        msg = "{} {} - {}".format(emoji, artist, title)
+        
+    if status != "stopped":
+        duration = parsed["duration"]
+        progress = parsed["position"]
+        msg = "{} | {} / {}".format(msg, seconds_to_time(progress), seconds_to_time(duration))
 
     return {
         "status": status,
