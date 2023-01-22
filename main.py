@@ -33,7 +33,7 @@ def seconds_to_time(n):
     n = int(n)
     mins = n // 60
     secs = n % 60
-    return "{:02}:{:02}".format(mins, secs)
+    return "{:01}:{:02}".format(mins, secs)
 
 def get_info(info):
     parsed = interpret_info(info)
@@ -47,12 +47,12 @@ def get_info(info):
     else:
         artist = parsed["artist"]
         title = parsed["title"]
-        msg = "{} {} - {}".format(emoji, artist, title)
+        msg = "{} {} — {}".format(emoji, artist, title)
         
     if status != "stopped":
         duration = parsed["duration"]
         progress = parsed["position"]
-        msg = "{} | {} / {}".format(msg, seconds_to_time(progress), seconds_to_time(duration))
+        msg = "{} ({} / {})".format(msg, seconds_to_time(progress), seconds_to_time(duration))
 
     return {
         "status": status,
@@ -61,7 +61,7 @@ def get_info(info):
 
 def get_colour(status):
     if status == "playing":
-        return "#ffffff"
+        return "#00FF00"
     elif status == "paused":
         return "#FFFF00"
     elif status == "stopped":
