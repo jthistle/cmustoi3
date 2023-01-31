@@ -21,9 +21,9 @@ def interpret_info(info):
 
 def get_emoji(status):
     if status == "playing":
-        return "🎵"
+        return "⬤"
     elif status == "paused":
-        return "▌▌"
+        return "◯"
     elif status == "stopped":
         return "◻️"
     else:
@@ -61,11 +61,11 @@ def get_info(info):
 
 def get_colour(status):
     if status == "playing":
-        return "#00FF00"
+        return "#45fc38"
     elif status == "paused":
-        return "#FFFF00"
+        return "#ffa51f"
     elif status == "stopped":
-        return "#FFA500"
+        return "#d90000"
     return "#ffffff" 
 
 def i3():
